@@ -56,17 +56,16 @@ class ShellForceSVK:
     """
     def __init__(self, spline, u_hom, E, nu, h_th, linearize=False):
         """
-        Parameters
-        ----------
-        spline : tIGAr extracted spline
-        u_hom : dolfin Function. Numerical solution of problem.
-        E : dolfin constant. Material's Young's modulus
-        nu : dolfin constant. Material's Poisson's ratio
-        h_th : dolfin constant. Shell's thickness
-        linearize : bool, default is False.
-            If ``linearize`` is True, using linearized membrane strains
-            and curvature changes to compute stress resultants. For 
-            linear problem, set this argument as True.
+        Compute Kirchhoff--Love shell stress resultants using SVK.
+
+        Parameters:
+        - `spline`: tIGAr extracted spline
+        - `u_hom`: dolfin Function (numerical solution of the problem)
+        - `E`: dolfin constant (material's Young's modulus)
+        - `nu`: dolfin constant (material's Poisson's ratio)
+        - `h_th`: dolfin constant (shell thickness)
+        - `linearize` (bool, default: False): if True, use linearized membrane strains and curvature changes to compute
+        stress resultants.
         """
         self.spline = spline
         self.u_hom = u_hom
@@ -178,25 +177,20 @@ class ShellStressSVK(ShellForceSVK):
     def __init__(self, spline, u_hom, E, nu, h_th, 
                  linearize=False, G_det_min=0):
         """
-        Parameters
-        ----------
-        spline : tIGAr extracted spline
-        u_hom : dolfin Function. Numerical solution of problem.
-        E : dolfin constant. Material's Young's modulus
-        nu : dolfin constant. Material's Poisson's ratio
-        h_th : dolfin constant. Shell's thickness
-        linearize : bool, default is False.
-            If ``linearize`` is True, using linearized membrane strains
-            and curvature changes to compute stresses. For linear 
-            problem, set this argument as True.
-        G_det_min :float, default is 0
-            This argument is the relative minimum allowable determinant 
-            of KL metric tensor ``self.G``, if absolute relative 
-            determinant (det/det_range) is smaller than this value, 
-            the through thickness coordinate ``xi2`` will be changed 
-            to 0 to reduce stress concentration (usually mid-surface has
-            less obvious stress concentration around surface corner). 
-            Default value is 0, this function will not be activated.
+        Compute Kirchhoff--Love shell stresses using SVK.
+
+        Parameters:
+        - `spline`: tIGAr extracted spline
+        - `u_hom`: dolfin Function (numerical solution of the problem)
+        - `E`: dolfin constant (material's Young's modulus)
+        - `nu`: dolfin constant (material's Poisson's ratio)
+        - `h_th`: dolfin constant (shell thickness)
+        - `linearize` (bool, default: False): if True, use linearized membrane strains and curvature changes to compute
+        stresses.
+        - `G_det_min` (float, default: 0): relative minimum allowable determinant of the KL metric tensor ``self.G``;
+        if the absolute relative determinant (det/det_range) is smaller than this value, the through-thickness
+        coordinate ``xi2`` is set to 0 to reduce stress concentration.
+
         """
         super().__init__(spline, u_hom, E, nu, h_th, linearize)
         self.G_det_min = G_det_min

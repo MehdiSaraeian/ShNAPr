@@ -1,0 +1,8 @@
+pixi.lock
+ShNAPr.egg-info/
+docs/_build/html/
+**/__pycache__/
+demos/extraction/*
+demos/results/*
+demos/knot.iga
+demos/smesh.1.dat

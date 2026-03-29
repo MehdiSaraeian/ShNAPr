@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ShNAPr"
+version = "2019.1"
+description = "Kirchhoff-Love shell forumulation for tIGAr/FEniCS"
+readme = "README.md"
+license = { text = "GNU LGPLv3" }
+authors = [{ name = "D. Kamensky" }]
+urls = { Homepage = "https://github.com/david-kamensky/ShNAPr" }
+
+[tool.setuptools]
+packages = ["ShNAPr"]
